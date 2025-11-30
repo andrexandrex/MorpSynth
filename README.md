@@ -1,6 +1,5 @@
-<<<<<<< HEAD
+
 # MorpSynth
-=======
 # 1. MORP–Synth Pipeline Overview
 
 **Goal:** Improve cross-domain generalization (**Mediterranean → Peru**) by combining:
@@ -71,5 +70,3 @@ python test.py --name derrame_exp_INADEPERUANO512_corrected_v2 --dataset_mode oi
 ## 🔹 Step 3 — Train the Segmentation Model (Real + Synthetic)
 
 Run segmentation/train_hpc_finetune_peru_v3_synth_v3_v1.py with the appropiate dirs for data location.
-
->>>>>>> master
