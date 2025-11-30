@@ -66,10 +66,6 @@ python test.py --name derrame_exp_INADEPERUANO512_corrected_v2 --dataset_mode oi
 ```
 
 ## 🔹 Step 3 — Train the Segmentation Model (Real + Synthetic)
-Train your segmentation model using a combined dataset:
 
-Real: Peruvian SAR + Real Masks
-
-Synthetic: Synthetic SAR + Synthetic Masks
 Run segmentation/train_hpc_finetune_peru_v3_synth_v3_v1.py with the appropiate dirs for data location.
 
