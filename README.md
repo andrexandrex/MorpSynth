@@ -42,7 +42,7 @@ python INADE/train.py --name derrame_exp_INADE512 \
   --use_amp \
   --z_dim 512 \
   --eval_epoch_freq 5 \
-  --dataroot /home/ajuarez/data/selected_sampling_final_less_bg_addmoresea_trainINADE \
+  --dataroot "" \
   --gpu_ids -1 \
   --batchSize 1 \
   --niter 15 \
@@ -56,22 +56,13 @@ python INADE/train.py --name derrame_exp_INADE512 \
 
 Generate geometric mask augmentations for:
 
-class 1 = oil
-
-class 2 = look-alike
-
-```bash
-python morp_transformations/morp_code_spikeaware_v4.py \
-  --input_masks path/to/real_masks \
-  --output_masks path/to/morp_masks \
-  --num_aug 10 \
-  --morph_strength 50
-```
-
+Run morp_transformations/morp_code_spikeaware_v4.py for augmenting labels {1,2} of domain dataset.
 Output:
 MORP-augmented masks (e.g., morp_masks/patch001_aug3.png)
 
-These masks now need synthetic SAR generation using INADE.
+These masks are the inputs for INADE synthesis. Apply the process with INADE\test.py
+```bash
+python test.py --name derrame_exp_INADEPERUANO512_corrected_v2 --dataset_mode oilspillperu2synth --norm_mode inade --use_vae --z_dim 512 --dataroot "" --results_dir "" --which_epoch latest --how_many 902 --gpu_ids -1 --load_size 512 --crop_size 512 --batchSize 2 ```
 
 ## 🔹 Step 3 — Train the Segmentation Model (Real + Synthetic)
 Train your segmentation model using a combined dataset:
@@ -79,13 +70,5 @@ Train your segmentation model using a combined dataset:
 Real: Peruvian SAR + Real Masks
 
 Synthetic: Synthetic SAR + Synthetic Masks
+Run segmentation/train_hpc_finetune_peru_v3_synth_v3_v1.py with the appropiate dirs for data location.
 
-```bash
-python segmentation/train_hpc_finetune_peru_v3_synth_v3_v1.py \
-  --real_dir path/to/peru_real \
-  --synth_dir path/to/synth_sar \
-  --arch deeplabv3_resnet34 \
-  --epochs 60 \
-  --batch_size 8 \
-  --save_dir experiments/dlv3p_synth_v3
-```
