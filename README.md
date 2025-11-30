@@ -62,7 +62,8 @@ MORP-augmented masks (e.g., morp_masks/patch001_aug3.png)
 
 These masks are the inputs for INADE synthesis. Apply the process with INADE\test.py
 ```bash
-python test.py --name derrame_exp_INADEPERUANO512_corrected_v2 --dataset_mode oilspillperu2synth --norm_mode inade --use_vae --z_dim 512 --dataroot "" --results_dir "" --which_epoch latest --how_many 902 --gpu_ids -1 --load_size 512 --crop_size 512 --batchSize 2 ```
+python test.py --name derrame_exp_INADEPERUANO512_corrected_v2 --dataset_mode oilspillperu2synth --norm_mode inade --use_vae --z_dim 512 --dataroot "" --results_dir "" --which_epoch latest --how_many 902 --gpu_ids -1 --load_size 512 --crop_size 512 --batchSize 2
+```
 
 ## 🔹 Step 3 — Train the Segmentation Model (Real + Synthetic)
 Train your segmentation model using a combined dataset:
